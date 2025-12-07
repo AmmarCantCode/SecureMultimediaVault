@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMV — Setup</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <style>
+    body{margin:0;background:var(--bg);color:var(--fg)}
+    .onb-wrap{min-height:100vh;display:flex;flex-direction:column}
+    .onb-header{padding:16px 20px;border-bottom:1px solid var(--border);background:#0b1324;font-weight:800}
+    .onb-main{flex:1;display:flex;justify-content:center;padding:24px}
+    .onb-card{width:min(980px,95%);}
+  </style>
+</head>
+<body>
+  <div class="onb-wrap">
+    <div class="onb-main">
+      <div class="onb-card">
+        {% include "_wizard_inner.html" %}
+      </div>
+    </div>
+  </div>
+  <script type="module" src="{{ url_for('static', filename='js/crypto.js') }}"></script>
+  <script type="module" src="{{ url_for('static', filename='js/page_wizard.js') }}"></script>
+  <!--<script src="{{ url_for('static', filename='js/theme.js') }}"></script>-->
+  <script src="{{ url_for('static', filename='js/smv_session.js') }}"></script>
+</body>
+</html>

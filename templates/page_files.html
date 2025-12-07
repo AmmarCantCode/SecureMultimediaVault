@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My Files</h1>
+<div class="toolbar">
+  <input id="search" placeholder="Search by name…">
+  <div class="tabs">
+    <button id="tab-files" class="tab active">My Files</button>
+    <button id="tab-trash" class="tab">Trash</button>
+  </div>
+</div>
+<div id="file-list"></div>
+<script type="module" src="{{ url_for('static', filename='js/crypto.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/page_files.js') }}"></script>
+{% endblock %}

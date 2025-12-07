@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMV — {{ 'Register' if mode=='register' else 'Login' }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body class="auth">
+  <div class="auth-card">
+    <h1>{{ 'Register' if mode=='register' else 'Login' }}</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash">
+          {% for cat, msg in messages %}
+            <div class="flash-{{cat}}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" class="stacked">
+      <label>Email</label>
+      <input name="email" type="email" required>
+      <label>Password</label>
+      <input name="password" type="password" required>
+      <button type="submit" class="btn">{{ 'Create account' if mode=='register' else 'Continue' }}</button>
+    </form>
+
+    {% if mode=='register' %}
+      <p class="muted">Already have an account? <a href="{{ url_for('auth.login') }}">Login</a></p>
+    {% else %}
+      <p class="muted">Don’t have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+      <p class="muted">You’ll be asked for a 6-digit OTP next (printed in the server console for demo).</p>
+    {% endif %}
+  </div>
+  <!--<script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>-->
+  <script src="{{ url_for('static', filename='js/smv_session.js') }}"></script>
+</body>
+</html>

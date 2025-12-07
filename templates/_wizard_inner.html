@@ -1,0 +1,60 @@
+<h1>Setup Wizard</h1>
+<p class="muted">We’ll get your account ready in a few quick steps.</p>
+
+<div id="wiz" class="wizard card">
+  <div class="wiz-steps">
+    <div class="wiz-step active" data-step="1">1. Profile</div>
+    <div class="wiz-step" data-step="2">2. Crypto Keys</div>
+    <div class="wiz-step" data-step="3">3. Security</div>
+    <div class="wiz-step" data-step="4">4. Storage</div>
+    <div class="wiz-step" data-step="5">5. Finish</div>
+  </div>
+
+  <div class="wiz-body">
+    <section id="step-1">
+      <h3>Profile</h3>
+      <label>Display name</label>
+      <input id="wiz-display-name" placeholder="e.g., Ammar">
+    </section>
+
+    <section id="step-2" class="hidden">
+      <h3>Crypto Keys</h3>
+      <p class="muted">Files are encrypted with keys only you control. Create your passphrase to protect your private key.</p>
+      <div id="wiz-key-present" class="alert success hidden">Keys already set up ✅</div>
+      <div id="wiz-key-create">
+        <div class="stack">
+          <label>New passphrase</label>
+          <input id="wiz-pass-1" type="password" placeholder="Passphrase">
+          <label>Confirm passphrase</label>
+          <input id="wiz-pass-2" type="password" placeholder="Repeat passphrase">
+        </div>
+        <button id="wiz-btn-create" class="btn">Create Keys</button>
+        <div id="wiz-key-error" class="alert hidden"></div>
+      </div>
+    </section>
+
+    <section id="step-3" class="hidden">
+      <h3>Security</h3>
+      <p class="muted">We'll use email OTP for the demo.</p>
+      <label><input type="checkbox" id="wiz-security-email" checked disabled> Email OTP enabled</label>
+    </section>
+
+    <section id="step-4" class="hidden">
+      <h3>Storage defaults</h3>
+      <label>Auto-purge Trash after (days)</label>
+      <input type="number" id="wiz-retention" min="1" max="365" value="30">
+      <label><input type="checkbox" id="wiz-auto-logout"> Auto-logout on tab close (disabled in this demo to avoid surprises)</label>
+    </section>
+
+    <section id="step-5" class="hidden">
+      <h3>All set!</h3>
+      <p>Your profile has been saved and keys are ready. Click <strong>Finish</strong> to go to your dashboard.</p>
+    </section>
+  </div>
+
+  <div class="wiz-actions">
+    <button id="wiz-prev" class="btn" disabled>Back</button>
+    <div class="spacer"></div>
+    <button id="wiz-next" class="btn">Next</button>
+  </div>
+</div>

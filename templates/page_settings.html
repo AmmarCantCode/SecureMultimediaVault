@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Settings</h1>
+<div class="grid">
+  <div class="tile">
+    <h3>Profile</h3>
+    <label>Display name</label>
+    <input id="display-name" value="{{ current_user.display_name or current_user.email.split('@')[0].capitalize() }}">
+    <button id="btn-save-profile">Save</button>
+  </div>
+  <div class="tile">
+    <h3>Retention</h3>
+    <label>Auto-purge Trash after (days)</label>
+    <input id="retention" type="number" min="1" max="365" value="{{ current_user.trash_retention_days or 30 }}">
+    <button id="btn-save-retention">Save</button>
+  </div>
+  <div class="tile">
+    <h3>Session</h3>
+    <label><input id="auto-logout" type="checkbox" {% if current_user.auto_logout_on_close %}checked{% endif %}> Auto-logout on tab close (disabled in this build to avoid accidental logouts).</label>
+    <button id="btn-save-session">Save</button>
+  </div>
+  <div class="tile">
+    <h3>Run Setup Wizard</h3>
+    <p class="muted">If you haven’t created your crypto keys yet, the wizard will guide you.</p>
+    <!--<a class="btn" href="{{ url_for('settings.wizard') }}">Open Wizard</a>-->
+    <button id="btn-open-wizard" href="{{ url_for('settings.wizard') }}" >Open Wizard</button>
+  </div>
+</div>
+<script type="module" src="{{ url_for('static', filename='js/page_settings.js') }}"></script>
+{% endblock %}

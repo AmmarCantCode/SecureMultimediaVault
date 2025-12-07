@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "_wizard_inner.html" %}
+<script type="module" src="{{ url_for('static', filename='js/crypto.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/page_wizard.js') }}"></script>
+{% endblock %}

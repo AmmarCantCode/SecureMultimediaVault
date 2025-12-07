@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="grid">
+  <div class="tile"><h3>Key Status</h3><div id="key-status">Loading…</div></div>
+  <div class="tile"><h3>Storage</h3><div id="storage">Loading…</div></div>
+  <div class="tile"><h3>Quick Actions</h3>
+    <p><!--<a class="btn" href="{{ url_for('files.page_upload') }}">Upload file</a>--> <button id="btn-page-upload" href="{{ url_for('files.page_upload') }}" >Open Wizard</button>
+    <!--<a class="btn" href="{{ url_for('files.page_files') }}">My files</a>--> <button id="btn-open-wizard" href="{{ url_for('files.page_files') }}" >Open Wizard</button> </p>
+  </div>
+</div>
+<div class="card"><h2>Recent activity</h2><ul id="recent"></ul></div>
+<script type="module" src="{{ url_for('static', filename='js/page_dashboard.js') }}"></script>
+{% endblock %}
+
+<button id="btn-open-wizard" href="{{ url_for('settings.wizard') }}" >Open Wizard</button>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Upload File</h1>
+<div id="upload-box" class="card">
+  <p class="muted">Files are encrypted <strong>in your browser</strong> before upload.</p>
+  <input id="file-input" type="file" accept="image/*,application/pdf">
+  <button id="btn-upload">Encrypt & Upload</button>
+  <div id="upload-status"></div>
+  <div id="error-box" class="alert hidden"></div>
+  <div id="drop-zone" class="drop-zone"><strong>Drag & drop</strong> a file here, or click to choose</div>
+  <div class="selected-name">Selected: <span id="selected-name">No file chosen</span></div>
+  <div id="progress-wrap" class="progress-wrap hidden">
+    <label id="progress-label">Processing…</label>
+    <div class="progress"><div id="progress-bar" class="bar" style="width:0%"></div></div>
+  </div>
+</div>
+<script type="module" src="{{ url_for('static', filename='js/crypto.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/page_upload.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SMV</title>
+  <script>
+(function(){
+  try {
+    var saved = localStorage.getItem('smvTheme');
+    var theme = (saved === 'light' || saved === 'neon') ? saved : 'neon'; // default neon
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (_) {
+    document.documentElement.setAttribute('data-theme', 'neon');
+  }
+})();
+</script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body class="layout">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-grid" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h8v8H3V3m10 0h8v8h-8V3M3 13h8v8H3v-8m10 0h8v8h-8v-8Z"/></symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h6l2 2h10v10a2 2 0 0 1-2 2H3z"/></symbol>
+    <symbol id="icon-upload" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20h14v-2H5v2m7-14l5 5h-3v4h-4v-4H7l5-5Z"/></symbol>
+    <symbol id="icon-gear" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8m8.94 2a8 8 0 0 1 0 4l2.06 1.6l-2 3.46l-2.5-1a8 8 0 0 1-3.46 2l-.38 2.65H9.34l-.38-2.65a8 8 0 0 1-3.46-2l-2.5 1l-2-3.46L3.06 14a8 8 0 0 1 0-4L1 8.4l2-3.46l2.5 1a8 8 0 0 1 3.46-2L9.34 1h5.32l.38 2.65a8 8 0 0 1 3.46 2l2.5-1l2 3.46z"/></symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24"><path fill="currentColor" d="M14.08 15.59L16.67 13H7v-2h9.67l-2.59-2.59L16.5 7l5 5l-5 5l-2.42-1.41M3 19V5h8V3H3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8v-2H3Z"/></symbol>
+    <symbol id="icon-chevrons" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.59L12.83 14l-5.42 5.41L6 18l3.59-4L6 10zM13.41 8.59L18.83 14l-5.42 5.41L12 18l3.59-4L12 10z"/></symbol>
+  </svg>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="brand">
+      <div class="brand-title">SECURE MULTIMEDIA<br>VAULT</div>
+      <button id="btn-collapse" class="icon-btn" aria-label="Toggle sidebar" title="Collapse/Expand">
+        <svg><use href="#icon-chevrons"></use></svg>
+      </button>
+      <!--<button id="theme-toggle" class="icon-btn" type="button" >🌙 Neon</button>-->
+    </div>
+
+    <nav class="menu">
+      <a class="menu-item {% if request.path.startswith('/files/dashboard') %}active{% endif %}" href="{{ url_for('files.dashboard') }}" title="Dashboard">
+        <svg class="mi"><use href="#icon-grid"></use></svg><span>Dashboard</span>
+      </a>
+      <a class="menu-item {% if request.path.startswith('/files/files') %}active{% endif %}" href="{{ url_for('files.page_files') }}" title="My Files">
+        <svg class="mi"><use href="#icon-folder"></use></svg><span>My Files</span>
+      </a>
+      <a class="menu-item {% if request.path.startswith('/files/upload') %}active{% endif %}" href="{{ url_for('files.page_upload') }}" title="Upload File">
+        <svg class="mi"><use href="#icon-upload"></use></svg><span>Upload File</span>
+      </a>
+      <a class="menu-item {% if request.path.startswith('/settings') %}active{% endif %}" href="{{ url_for('settings.page') }}" title="Settings">
+        <svg class="mi"><use href="#icon-gear"></use></svg><span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="spacer"></div>
+
+    <div class="profile">
+      <div class="avatar">{{ (current_user.display_name or current_user.email.split('@')[0]).strip()[:1].upper() }}</div>
+      <div class="name">{{ current_user.display_name or current_user.email.split('@')[0].capitalize() }}</div>
+    </div>
+
+    <form method="post" action="{{ url_for('auth.logout') }}" class="logout-form">
+      <button type="submit" class="logout-btn">
+        <svg class="mi"><use href="#icon-logout"></use></svg><span>Logout</span>
+      </button>
+    </form>
+  </aside>
+
+  <main class="content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash">
+          {% for cat, msg in messages %}
+            <div class="flash-{{cat}}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+
+  <!--<script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>-->
+  <script src="{{ url_for('static', filename='js/smv_session.js') }}"></script>
+</body>
+</html>

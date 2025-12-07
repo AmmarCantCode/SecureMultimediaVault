@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Audit Log (latest 200)</h1>
+<table>
+  <thead><tr><th>Time (UTC)</th><th>User</th><th>Action</th><th>Status</th><th>IP</th><th>User Agent</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.ts }}</td>
+      <td>{{ r.user_id }}</td>
+      <td>{{ r.action }}</td>
+      <td>{{ r.status }}</td>
+      <td>{{ r.ip }}</td>
+      <td>{{ r.user_agent }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
