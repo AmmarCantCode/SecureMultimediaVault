@@ -1,9 +1,9 @@
 # smv
-A secure multimedia vault
+# A secure multimedia vault
 
 
 
-For first time run:
+# For first time run:
 
 .\venv\Scripts\activate
 
@@ -15,13 +15,13 @@ python app.py
 
 
 
-After that:
+# After that:
 
 python app.py
 
 
 
-Login Info:
+# Login Info:
 
 
 ammarzakirudin@gmail.com  123456
