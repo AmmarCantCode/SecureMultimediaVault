@@ -1,5 +1,5 @@
 # smv
-# A secure multimedia vault
+A secure multimedia vault
 
 
 
