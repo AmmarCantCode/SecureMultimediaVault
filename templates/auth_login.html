@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SMV — {{ 'Register' if mode=='register' else 'Login' }}</title>
+  <title >SMV — {{ 'Register' if mode=='register' else 'Login' }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body class="auth">
   <div class="auth-card">
-    <h1>{{ 'Register' if mode=='register' else 'Login' }}</h1>
+    <h1 style="color: #ffffff;">{{ 'Register' if mode=='register' else 'Login' }}</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         <div class="flash">
@@ -20,9 +20,9 @@
     {% endwith %}
 
     <form method="post" class="stacked">
-      <label>Email</label>
+      <label style="color: #ffffff;">Email</label>
       <input name="email" type="email" required>
-      <label>Password</label>
+      <label style="color: #ffffff;">Password</label>
       <input name="password" type="password" required>
       <button type="submit" class="btn">{{ 'Create account' if mode=='register' else 'Continue' }}</button>
     </form>
