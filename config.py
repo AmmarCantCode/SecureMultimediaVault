@@ -11,8 +11,8 @@ class Config:
         # === S3 storage config ===
     S3_BUCKET = os.getenv("S3_BUCKET", "smv-dev-ammarzaki")        # <-- your bucket
     S3_REGION = os.getenv("S3_REGION", "ap-southeast-2")          # <-- your region
-    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "AKIARCCRJKZZRMID2WNL")
-    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "hMFXN5DO6Kd3EG5zvls6UHptpZ7eo3BY8hBFvwQ3")
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "")
 
     # --- Mailgun (read from environment; do NOT hardcode secrets) ---
     MAILGUN_DOMAIN = os.environ.get("MAILGUN_DOMAIN", "")
